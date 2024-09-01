@@ -28,9 +28,20 @@ def print_element(element, indent=0):
 class TypeSimpleInput:
 
     def __init__(self, title, departments):
-        # self.departments = departments # список div на странице 
         self.title = title
         self.input_field = self.select_element(departments)
+
+    def target(self):
+        self.input_field.click()
+        # time.sleep(2)
+
+    def fill(self, text):
+        self.input_field.fill(text)
+        # time.sleep(2)
+
+    def clear(self):
+        self.input_field.fill("")
+        # time.sleep(2)
 
 
     def select_element(self, departments):
@@ -47,17 +58,6 @@ class TypeSimpleInput:
                     if input_field:
                         return input_field
 
-    def target(self):
-        self.input_field.click()
-        # time.sleep(2)
-
-    def fill(self, text):
-        self.input_field.fill(text)
-        # time.sleep(2)
-
-    def clear(self):
-        self.input_field.fill("")
-        # time.sleep(2)
 
 # поле для заполнения и выбора 
 class FieldToFillAndSelect:
@@ -74,18 +74,19 @@ class FieldToFillAndSelect:
     def fill(self, text):
         self.input_field.click() # Выбор текстового поля
         self.input_field.fill(text) # Заполнение тектового поля 
-        time.sleep(1) # Нужна задержка для появления списка 
         arr_li = self.select_lis(self.div) # Выбор элементов списка
-        # time.sleep(2)
         arr_li[1].click() # Выбор первого элемента
         self.label.click() # Сброс таргета с поля 
-        # time.sleep(2)
 
-    def clear(self):
+    def clear_button(self):
         button = self.select_button(self.div)
         button.click()
         self.label.click()
-        # time.sleep(2)
+
+    def clear(self):
+        self.input_field.click() # Выбор текстового поля
+        self.input_field.fill("") # Записываем пустую строку 
+        self.label.click()
 
     def fill_not_selected(self, text):
         self.input_field.click() # Выбор текстового поля
@@ -93,9 +94,8 @@ class FieldToFillAndSelect:
         # time.sleep(2)
 
     def select_lis(self, div):
-        ul = div.query_selector('ul')
-        if ul:
-            arr_li = ul.query_selector_all('li')
+        div.wait_for_selector("ul >> li", timeout=5000) # Ожидаем тег ul и появление в нем тегов li
+        arr_li = div.query_selector_all("ul >> li")
         return arr_li
 
     def select_button(self, div):
@@ -115,46 +115,39 @@ class FieldToFillAndSelect:
                     if input_field:
                         return div, label, input_field
 
-# поле для выбора ==== надо доделать поля для выбора 
+# поле для выбора 
 class FieldToSelect:
 
     def __init__(self, title, departments):
-        # self.departments = departments # список div на странице 
         self.title = title
         self.div, self.label, self.input_field = self.select_element(departments)
 
     def target(self):
         self.input_field.click()
-        # time.sleep(2)
 
-    # def fill(self, text):
-    #     self.input_field.click() # Выбор текстового поля
-    #     self.input_field.fill(text) # Заполнение тектового поля 
-    #     time.sleep(1) # Нужна задержка для появления списка 
-    #     arr_li = self.select_lis(self.div) # Выбор элементов списка
-    #     # time.sleep(2)
-    #     arr_li[1].click() # Выбор первого элемента
-    #     self.label.click() # Сброс таргета с поля 
-    #     # time.sleep(2)
-
-    def select(self):
+    def select(self, search_string):
         self.input_field.click()
+        arr_li = self.select_lis(self.div) # Выбор элементов списка
+        arr_li[self.search_item(arr_li, search_string)].click() # Выбор элемента по совпадению 
+        self.label.click() # Сброс таргета с поля 
 
-    def clear(self):
+    def clear_button(self):
         button = self.select_button(self.div)
         button.click()
         self.label.click()
-        # time.sleep(2)
 
-    # def fill_not_selected(self, text):
-    #     self.input_field.click() # Выбор текстового поля
-    #     self.input_field.fill(text) # Заполнение тектового поля 
-    #     # time.sleep(2)
+    def search_item(self, arr_li, search_string):
+        for i, s in enumerate(arr_li):
+            if search_string in s.text_content():
+                return i
+        return 0 # если нет совпадения, то выбираем первый элемент
+
 
     def select_lis(self, div):
-        ul = div.query_selector('ul')
+        self.input_field.click() # таргет по селектору, чтобы получить список
+        ul = div.query_selector("div.select-area >> div:nth-child(2)")
         if ul:
-            arr_li = ul.query_selector_all('li')
+            arr_li = ul.query_selector_all('div')
         return arr_li
 
     def select_button(self, div):
@@ -169,34 +162,26 @@ class FieldToSelect:
                 # Сравним его с заданным названием поля
                 if self.title in label_text:
                     
-                    # Найдём input внутри второго div
-                    div_list = div.query_selector("div.items")
+                    # Найдём поле 
+                    input_field = div.query_selector("div.select-area")
 
-                    print_element(div_list)
-
-                    # for div in div_list:
-                    #     print(div.text_content())
-
-                    # if div_list:
-                    #     return div, label, div_list
-# поле для выбора ==== надо доделать поля для выбора 
+                    if input_field:
+                        return div, label, input_field
+# поле для выбора 
 
 
 # Текстовое поле Код ФРМО 
 class CodeFRMO(TypeSimpleInput):
-
     def __init__(self, departments):
         super().__init__(title = "Код ФРМО", departments = departments)
 
 # Текстовое поле Наименование отделения
 class FullNameDepartments(TypeSimpleInput):
-
     def __init__(self, departments):
         super().__init__(title = "Наименование отделения", departments = departments)
 
 # Текстовое поле Краткое наименование
 class ShortNameDepartments(TypeSimpleInput):
-
     def __init__(self, departments):
         super().__init__(title = "Краткое наименование", departments = departments)
 
@@ -220,7 +205,22 @@ class SelectDepartment(FieldToSelect):
     def __init__(self, departments):
         super().__init__(title = "Подразделение", departments = departments)
 
+# Поля адреса 
 
+# Текстовое поле почтового индекса
+class AddrPostalCode(TypeSimpleInput):
+    def __init__(self, departments):
+        super().__init__(title = "Индекс", departments = departments)
+
+# Поле для заполнения и выбора Регион
+class AddrRegion(FieldToFillAndSelect):
+    def __init__(self, departments):
+        super().__init__(title = "Регион", departments = departments)
+
+# Поле для заполнения и выбора Район
+class AddrDistrict(FieldToFillAndSelect):
+    def __init__(self, departments):
+        super().__init__(title = "Район", departments = departments)
 
 # Способ композиции 
 class Departments:
@@ -245,6 +245,12 @@ class Departments:
         self.Name_And_Patronymic = NameAndPatronymic(divs)
 
         self.Select_Department = SelectDepartment(divs)
+
+        self.Addr_Postal_Code = AddrPostalCode(divs)
+
+        self.Addr_Region = AddrRegion(divs)
+
+        self.Addr_District = AddrDistrict(divs)
 
 
 

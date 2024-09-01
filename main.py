@@ -10,7 +10,7 @@ def run(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
     page = context.new_page()
-    page.goto("http://davinci/login")
+    page.goto("http://localhost/login")
     page.get_by_placeholder("Введите Email").click()
     page.get_by_placeholder("Введите Email").fill("admin@mirmis.ru")
     page.get_by_placeholder("Введите пароль").click()
@@ -18,11 +18,16 @@ def run(playwright: Playwright) -> None:
     page.get_by_role("button", name="Войти").click()
     # page.get_by_role("link", name="Отделения").click()
 
-    page.goto("http://davinci/institution/departments/create")
+    page.goto("http://localhost/institution/departments/create")
+
+    # Задержка специально для раздела адреса, нужно что-то решить 
+    time.sleep(3)
 
     # Найдём все элементы div, содержащие span и input
     divs = page.query_selector_all('div')
-    field_found = False
+    # field_found = False
+
+    
 
     departments = Departments(divs = divs)
 
@@ -67,18 +72,47 @@ def run(playwright: Playwright) -> None:
     # departments.Name_And_Patronymic.fill_not_selected(text = "Адм")
     # time.sleep(1)
 
+    # departments.Select_Department.target()
+    # time.sleep(3)
+    # departments.Select_Department.select("Подразделение новое 1 полное ред")
+    # time.sleep(3)
+    # departments.Select_Department.clear_button()
+    # time.sleep(3)
+
     # Рабочие 
 
-    departments.Select_Department.target()
+
+    
+
+    departments.Addr_Postal_Code.target()
     time.sleep(1)
-    # # departments.Select_Department.fill(text = "Админ")
-    # time.sleep(1)
-    # # departments.Select_Department.clear()
-    # time.sleep(1)
-    # # departments.Select_Department.fill_not_selected(text = "Адм")
-    # time.sleep(1)
+    departments.Addr_Postal_Code.fill(text = "659220")
+    time.sleep(1)
+    departments.Addr_Postal_Code.clear()
+    time.sleep(1)
 
 
+    departments.Addr_Region.clear_button()
+    time.sleep(1)
+    departments.Addr_Region.target()
+    time.sleep(1)
+    departments.Addr_Region.fill(text = "Алтайский край")
+    time.sleep(1)
+    departments.Addr_Region.clear()
+    time.sleep(1)
+    departments.Addr_Region.fill_not_selected(text = "Барнаул")
+    time.sleep(1)
+
+    departments.Addr_District.target()
+    time.sleep(1)
+    departments.Addr_Region.fill(text = "Алтайский край")
+    time.sleep(1)
+    departments.Addr_District.fill(text = "р-н Бийский")
+    time.sleep(1)
+    departments.Addr_District.clear()
+    time.sleep(1)
+    departments.Addr_District.fill_not_selected(text = "Барнаул")
+    time.sleep(1)
 
     # code_frmo = CodeFRMO(page_departments)
     # code_frmo.target()
