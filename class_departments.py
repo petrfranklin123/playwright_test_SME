@@ -222,37 +222,97 @@ class AddrDistrict(FieldToFillAndSelect):
     def __init__(self, departments):
         super().__init__(title = "Район", departments = departments)
 
+# Поле для заполнения и выбора Город
+class AddrCity(FieldToFillAndSelect):
+    def __init__(self, departments):
+        super().__init__(title = "Город", departments = departments)
+
+# Поле для заполнения и выбора Населенный пункт
+class AddrSettlement(FieldToFillAndSelect):
+    def __init__(self, departments):
+        super().__init__(title = "Населенный пункт", departments = departments)
+
+# Поле для заполнения и выбора Второй населенный пункт
+class AddrSettlementSecond(FieldToFillAndSelect):
+    def __init__(self, departments):
+        super().__init__(title = "Второй населенный пункт", departments = departments)
+
+# Поле для заполнения и выбора Улица
+class AddrStreet(FieldToFillAndSelect):
+    def __init__(self, departments):
+        super().__init__(title = "Улица", departments = departments)
+
+# Поле для заполнения и выбора Дом
+class AddrHouse(FieldToFillAndSelect):
+    def __init__(self, departments):
+        super().__init__(title = "Дом", departments = departments)
+
+# Текстовое поле Строение
+class AddrStructure(TypeSimpleInput):
+    def __init__(self, departments):
+        super().__init__(title = "Строение", departments = departments)
+
+# Текстовое поле Корпус
+class AddrFrame(TypeSimpleInput):
+    def __init__(self, departments):
+        super().__init__(title = "Корпус", departments = departments)
+
+
 # Способ композиции 
 class Departments:
 
-    # def __init__(self, divs):
-    #     self.divs = divs # список div на странице 
+    def __init__(self, page):
+
+        # Ожидание того, пока не появится полностью адрес
+        self.divs = self.wait_address_and_get_div(page)
+
+        # иницализация всех объектов на странице 
+        self.init_object_from_page()
 
 
-    def __init__(self, divs):
-        # self.divs = page.query_selector_all('div')
+    def wait_address_and_get_div(self, page): 
 
-        self.Code_FRMO = CodeFRMO(divs)
+        page.wait_for_selector("div.fias_background.fias_address >> div.justify-content-center", state='visible', timeout=5000) # 
 
-        self.Full_Name_Departments = FullNameDepartments(divs)
+        divs = page.query_selector_all('div') 
 
-        self.Short_Name_Departments = ShortNameDepartments(divs)
+        return divs
+    
+    def init_object_from_page(self):
 
-        self.Type_Department = TypeDepartment(divs)
+        self.Code_FRMO = CodeFRMO(self.divs)
 
-        self.Director_Of_Department = DirectorOfDepartment(divs)
+        self.Full_Name_Departments = FullNameDepartments(self.divs)
 
-        self.Name_And_Patronymic = NameAndPatronymic(divs)
+        self.Short_Name_Departments = ShortNameDepartments(self.divs)
 
-        self.Select_Department = SelectDepartment(divs)
+        self.Type_Department = TypeDepartment(self.divs)
 
-        self.Addr_Postal_Code = AddrPostalCode(divs)
+        self.Director_Of_Department = DirectorOfDepartment(self.divs)
 
-        self.Addr_Region = AddrRegion(divs)
+        self.Name_And_Patronymic = NameAndPatronymic(self.divs)
 
-        self.Addr_District = AddrDistrict(divs)
+        self.Select_Department = SelectDepartment(self.divs)
 
+        self.Addr_Postal_Code = AddrPostalCode(self.divs)
 
+        self.Addr_Region = AddrRegion(self.divs)
+
+        self.Addr_District = AddrDistrict(self.divs)
+
+        self.Addr_City = AddrCity(self.divs)
+
+        self.Addr_Settlement = AddrSettlement(self.divs)
+
+        self.Addr_Settlement_Second = AddrSettlementSecond(self.divs)
+
+        self.Addr_Street = AddrStreet(self.divs)
+
+        self.Addr_House = AddrHouse(self.divs)
+
+        self.Addr_Structure = AddrStructure(self.divs)
+
+        self.Addr_Frame = AddrFrame(self.divs)
 
     # departments = Departments(page = page)
 

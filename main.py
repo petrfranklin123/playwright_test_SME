@@ -20,16 +20,16 @@ def run(playwright: Playwright) -> None:
 
     page.goto("http://localhost/institution/departments/create")
 
-    # Задержка специально для раздела адреса, нужно что-то решить 
-    time.sleep(3)
+    # # Задержка специально для раздела адреса, нужно что-то решить
+    # time.sleep(3)
 
-    # Найдём все элементы div, содержащие span и input
-    divs = page.query_selector_all('div')
-    # field_found = False
+    # # Найдём все элементы div, содержащие span и input
+    # divs = page.query_selector_all('div')
+    # # field_found = False
 
-    
+    # departments = Departments(divs = divs)
 
-    departments = Departments(divs = divs)
+    departments = Departments(page = page)
 
     # Рабочие 
 
@@ -46,73 +46,155 @@ def run(playwright: Playwright) -> None:
     # departments.Short_Name_Departments.clear()
 
     # departments.Type_Department.target()
-    # time.sleep(1)
+    # # time.sleep(1)
     # departments.Type_Department.fill(text = "Отделение лабораторное")
-    # time.sleep(1)
+    # # time.sleep(1)
     # departments.Type_Department.clear()
-    # time.sleep(1)
+    # # time.sleep(1)
     # departments.Type_Department.fill_not_selected(text = "Отделение")
-    # time.sleep(1)
+    # # time.sleep(1)
 
     # departments.Director_Of_Department.target()
-    # time.sleep(1)
+    # # time.sleep(1)
     # departments.Director_Of_Department.fill(text = "Админ")
-    # time.sleep(1)
+    # # time.sleep(1)
     # departments.Director_Of_Department.clear()
-    # time.sleep(1)
+    # # time.sleep(1)
     # departments.Director_Of_Department.fill_not_selected(text = "Адм")
-    # time.sleep(1)
+    # # time.sleep(1)
 
     # departments.Name_And_Patronymic.target()
-    # time.sleep(1)
+    # # time.sleep(1)
     # departments.Name_And_Patronymic.fill(text = "Админ")
-    # time.sleep(1)
+    # # time.sleep(1)
     # departments.Name_And_Patronymic.clear()
-    # time.sleep(1)
+    # # time.sleep(1)
     # departments.Name_And_Patronymic.fill_not_selected(text = "Адм")
-    # time.sleep(1)
+    # # time.sleep(1)
 
     # departments.Select_Department.target()
-    # time.sleep(3)
+    # # time.sleep(3)
     # departments.Select_Department.select("Подразделение новое 1 полное ред")
-    # time.sleep(3)
+    # # time.sleep(3)
     # departments.Select_Department.clear_button()
-    # time.sleep(3)
+    # # time.sleep(3)
+
+
+    # departments.Addr_Postal_Code.target()
+    # # time.sleep(1)
+    # departments.Addr_Postal_Code.fill(text = "659220")
+    # # time.sleep(1)
+    # departments.Addr_Postal_Code.clear()
+    # # time.sleep(1)
+
+
+    # departments.Addr_Region.clear_button()
+    # # time.sleep(1)
+    # departments.Addr_Region.target()
+    # # time.sleep(1)
+    # departments.Addr_Region.fill(text = "Алтайский край")
+    # # time.sleep(1)
+    # departments.Addr_Region.clear()
+    # # time.sleep(1)
+    # departments.Addr_Region.fill_not_selected(text = "Барнаул")
+    # # time.sleep(1)
+
+    # departments.Addr_District.target()
+    # # time.sleep(1)
+    # departments.Addr_Region.fill(text = "Алтайский край")
+    # # time.sleep(1)
+    # departments.Addr_District.fill(text = "р-н Бийский")
+    # # time.sleep(1)
+    # departments.Addr_District.clear()
+    # # time.sleep(1)
+    # departments.Addr_District.fill_not_selected(text = "Барнаул")
+    # # time.sleep(1)
 
     # Рабочие 
 
-
-    
-
-    departments.Addr_Postal_Code.target()
-    time.sleep(1)
-    departments.Addr_Postal_Code.fill(text = "659220")
-    time.sleep(1)
-    departments.Addr_Postal_Code.clear()
-    time.sleep(1)
-
-
-    departments.Addr_Region.clear_button()
-    time.sleep(1)
-    departments.Addr_Region.target()
-    time.sleep(1)
     departments.Addr_Region.fill(text = "Алтайский край")
-    time.sleep(1)
-    departments.Addr_Region.clear()
-    time.sleep(1)
-    departments.Addr_Region.fill_not_selected(text = "Барнаул")
-    time.sleep(1)
-
-    departments.Addr_District.target()
-    time.sleep(1)
-    departments.Addr_Region.fill(text = "Алтайский край")
-    time.sleep(1)
+    # time.sleep(1)
     departments.Addr_District.fill(text = "р-н Бийский")
-    time.sleep(1)
+    # time.sleep(1)
+    departments.Addr_City.target()
+    # time.sleep(1)
+    departments.Addr_City.fill_not_selected(text = "Бийск")
+    # time.sleep(1)
+
+    departments.Addr_City.clear()
+    # time.sleep(1)
     departments.Addr_District.clear()
     time.sleep(1)
-    departments.Addr_District.fill_not_selected(text = "Барнаул")
+    departments.Addr_City.fill(text = "Барнаул")
+    # time.sleep(1)
+    departments.Addr_City.clear_button()
+    # time.sleep(1)
+
+    departments.Addr_District.fill(text = "р-н Бийский")
     time.sleep(1)
+    departments.Addr_Settlement.fill(text = "снт Радуга")
+    time.sleep(1)
+    departments.Addr_Settlement.clear_button()
+    time.sleep(1)
+
+    departments.Addr_Settlement.fill_not_selected(text = "Нас пункт")
+    time.sleep(1)
+    departments.Addr_Settlement.clear()
+    time.sleep(1)
+
+
+    departments.Addr_Settlement_Second.target()
+    time.sleep(1)
+    departments.Addr_Settlement_Second.fill_not_selected(text = "Второй населенный пункт")
+    time.sleep(1)
+    departments.Addr_Settlement_Second.clear()
+    time.sleep(1)
+
+
+    departments.Addr_District.clear()
+    time.sleep(1)
+    departments.Addr_City.fill(text = "Барнаул")
+    time.sleep(1)
+    departments.Addr_Street.fill(text = "ул Модельная")
+    time.sleep(1)
+    departments.Addr_Street.clear_button()
+    time.sleep(1)
+
+    departments.Addr_Street.fill_not_selected(text = "Название улицы")
+    time.sleep(1)
+    departments.Addr_Street.clear()
+    time.sleep(1)
+
+
+    departments.Addr_Region.fill(text = "Алтайский край")
+    time.sleep(1)
+    departments.Addr_City.fill(text = "Барнаул")
+    time.sleep(1)
+    departments.Addr_Street.fill(text = "ул Модельная")
+    time.sleep(1)
+    departments.Addr_House.fill(text = "9")
+    time.sleep(1)
+    departments.Addr_House.clear_button()
+    time.sleep(1)
+
+    departments.Addr_House.fill_not_selected(text = "ДОМ 10")
+    time.sleep(1)
+    departments.Addr_House.clear()
+    time.sleep(1)
+
+    departments.Addr_Structure.target()
+    time.sleep(1)
+    departments.Addr_Structure.fill(text = "Строение")
+    time.sleep(1)
+    departments.Addr_Structure.clear()
+    time.sleep(1)
+
+    departments.Addr_Frame.target()
+    time.sleep(1)
+    departments.Addr_Frame.fill(text = "Корпус")
+    time.sleep(1)
+    departments.Addr_Frame.clear()
+
 
     # code_frmo = CodeFRMO(page_departments)
     # code_frmo.target()
