@@ -27,6 +27,13 @@ def print_element(element, indent=0):
 # Обычное тектовое поле 
 class TypeSimpleInput:
 
+    '''
+    Существует 5 методов для взаимодействия 
+    1) target - Нажатие по полю 
+    2) fill - Ввод текста
+    3) clear - Очистка пустой строкой 
+    '''
+
     def __init__(self, title, departments):
         self.title = title
         self.input_field = self.select_element(departments)
@@ -61,6 +68,15 @@ class TypeSimpleInput:
 
 # поле для заполнения и выбора 
 class FieldToFillAndSelect:
+
+    '''
+    Существует 5 методов для взаимодействия 
+    1) target - Нажатие по полю 
+    2) fill - Ввод текста и выбор первый элемент в списке 
+    3) clear_button - Очистка по крестику 
+    4) clear - Очистка пустой строкой 
+    5) fill_not_selected - Ввод текста, без выбора из списка 
+    '''
 
     def __init__(self, title, departments):
         # self.departments = departments # список div на странице 
@@ -117,6 +133,13 @@ class FieldToFillAndSelect:
 
 # поле для выбора 
 class FieldToSelect:
+
+    '''
+    Существует 5 методов для взаимодействия 
+    1) target - Нажатие по полю 
+    2) clear_button - Очистка по крестику 
+    3) select - Передается строка, по которой будет выполняться сравнение в выпадающем списке
+    '''
 
     def __init__(self, title, departments):
         self.title = title
@@ -257,6 +280,19 @@ class AddrFrame(TypeSimpleInput):
     def __init__(self, departments):
         super().__init__(title = "Корпус", departments = departments)
 
+# Поля адреса 
+
+# Текстовое поле Телефон
+class PhoneStr(TypeSimpleInput):
+    def __init__(self, departments):
+        super().__init__(title = "Телефон", departments = departments)
+
+# Текстовое поле Описание к теелфону
+class DescribePhone(TypeSimpleInput):
+    def __init__(self, departments):
+        super().__init__(title = "Описание к телефону", departments = departments)
+
+
 
 # Способ композиции 
 class Departments:
@@ -313,6 +349,10 @@ class Departments:
         self.Addr_Structure = AddrStructure(self.divs)
 
         self.Addr_Frame = AddrFrame(self.divs)
+
+        self.Phone_Str = PhoneStr(self.divs)
+
+        self.Describe_Phone = DescribePhone(self.divs)
 
     # departments = Departments(page = page)
 
