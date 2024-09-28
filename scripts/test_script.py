@@ -3,29 +3,33 @@ from pages.InstitutionBranch import InstitutionBranch
 
 import time
 
-# def test_institution_branch(page):
-#     institution_branch = InstitutionBranch(page = page)
+def test_institution_branch(page):
+    institution_branch = InstitutionBranch(page = page)
 
+    institution_branch.Btn_Back_And_Save_Form.click_btn_save()
+    time.sleep(3)
+    institution_branch.Btn_Back_And_Save_Form.click_btn_back()
+    time.sleep(3)
 
 #     institution_branch.Code_FRMO.target()
 #     institution_branch.Code_FRMO.fill(text = "1.2.643.5.1.13.13.12.2.24.2081")
 #     institution_branch.Code_FRMO.clear()
 
-#     institution_branch.Full_Name_Departments.target()
-#     institution_branch.Full_Name_Departments.fill(text = "ПОЛНОЕ НАЗВАНИЕ")
-#     institution_branch.Full_Name_Departments.clear()
+#     institution_branch.Full_Name.target()
+#     institution_branch.Full_Name.fill(text = "ПОЛНОЕ НАЗВАНИЕ")
+#     institution_branch.Full_Name.clear()
 
-#     institution_branch.Short_Name_Departments.target()
-#     institution_branch.Short_Name_Departments.fill(text = "КОРОТКОЕ НАЗВАНИЕ")
-#     institution_branch.Short_Name_Departments.clear()
+#     institution_branch.Short_Name.target()
+#     institution_branch.Short_Name.fill(text = "КОРОТКОЕ НАЗВАНИЕ")
+#     institution_branch.Short_Name.clear()
 
-#     institution_branch.Director_Of_Department.target()
+#     institution_branch.Director_Of_Structure.target()
 #     # time.sleep(1)
-#     institution_branch.Director_Of_Department.fill(text = "Админ")
+#     institution_branch.Director_Of_Structure.fill(text = "Админ")
 #     # time.sleep(1)
-#     institution_branch.Director_Of_Department.clear()
+#     institution_branch.Director_Of_Structure.clear()
 #     # time.sleep(1)
-#     institution_branch.Director_Of_Department.fill_not_selected(text = "Адм")
+#     institution_branch.Director_Of_Structure.fill_not_selected(text = "Адм")
 #     # time.sleep(1)
 
 #     institution_branch.Name_And_Patronymic.target()
@@ -36,13 +40,6 @@ import time
 #     # time.sleep(1)
 #     institution_branch.Name_And_Patronymic.fill_not_selected(text = "Адм")
 #     # time.sleep(1)
-
-#     # institution_branch.Select_Department.target()
-#     # # time.sleep(3)
-#     # institution_branch.Select_Department.select("Подразделение новое 1 полное ред")
-#     # # time.sleep(3)
-#     # institution_branch.Select_Department.clear_button()
-#     # # time.sleep(3)
 
 
 #     institution_branch.Addr_Postal_Code.target()
@@ -190,21 +187,21 @@ import time
 
 
 
-def test_departments(page):
-    departments = Departments(page = page)
+# def test_departments(page):
+#     departments = Departments(page = page)
 
-    # departments.Date_Creation.target()
-    # time.sleep(2)
-    # departments.Date_Creation.target_icon()
-    # time.sleep(2)
-    # departments.Date_Creation.fill(text = "12.12.1999")
-    # time.sleep(2)
-    # departments.Date_Creation.clear()
-    # time.sleep(2)
-    departments.Date_Creation.select_datepicker_target_date("05.01.2030")
-    time.sleep(2)
-    departments.Date_Creation.select_datepicker_today()
-    time.sleep(2)
+#     departments.Date_Creation.target()
+#     time.sleep(2)
+#     departments.Date_Creation.target_icon()
+#     time.sleep(2)
+#     departments.Date_Creation.fill(text = "12.12.1999")
+#     time.sleep(2)
+#     departments.Date_Creation.clear()
+#     time.sleep(2)
+#     departments.Date_Creation.select_datepicker_target_date("05.01.2030")
+#     time.sleep(2)
+#     departments.Date_Creation.select_datepicker_today()
+#     time.sleep(2)
     
 
 #     # Рабочие 
@@ -213,13 +210,13 @@ def test_departments(page):
 #     departments.Code_FRMO.fill(text = "1.2.643.5.1.13.13.12.2.24.2081")
 #     departments.Code_FRMO.clear()
 
-#     departments.Full_Name_Departments.target()
-#     departments.Full_Name_Departments.fill(text = "ПОЛНОЕ НАЗВАНИЕ")
-#     departments.Full_Name_Departments.clear()
+#     departments.Full_Name.target()
+#     departments.Full_Name.fill(text = "ПОЛНОЕ НАЗВАНИЕ")
+#     departments.Full_Name.clear()
 
-#     departments.Short_Name_Departments.target()
-#     departments.Short_Name_Departments.fill(text = "КОРОТКОЕ НАЗВАНИЕ")
-#     departments.Short_Name_Departments.clear()
+#     departments.Short_Name.target()
+#     departments.Short_Name.fill(text = "КОРОТКОЕ НАЗВАНИЕ")
+#     departments.Short_Name.clear()
 
 #     departments.Type_Department.target()
 #     # time.sleep(1)
@@ -230,13 +227,13 @@ def test_departments(page):
 #     departments.Type_Department.fill_not_selected(text = "Отделение")
 #     # time.sleep(1)
 
-#     departments.Director_Of_Department.target()
+#     departments.Director_Of_Structure.target()
 #     # time.sleep(1)
-#     departments.Director_Of_Department.fill(text = "Админ")
+#     departments.Director_Of_Structure.fill(text = "Админ")
 #     # time.sleep(1)
-#     departments.Director_Of_Department.clear()
+#     departments.Director_Of_Structure.clear()
 #     # time.sleep(1)
-#     departments.Director_Of_Department.fill_not_selected(text = "Адм")
+#     departments.Director_Of_Structure.fill_not_selected(text = "Адм")
 #     # time.sleep(1)
 
 #     departments.Name_And_Patronymic.target()
@@ -248,11 +245,11 @@ def test_departments(page):
 #     departments.Name_And_Patronymic.fill_not_selected(text = "Адм")
 #     # time.sleep(1)
 
-#     departments.Select_Department.target()
+#     departments.Select_Institution_Branch.target()
 #     # time.sleep(3)
-#     departments.Select_Department.select("Подразделение новое 1 полное ред")
+#     departments.Select_Institution_Branch.select("Подразделение новое 1 полное ред")
 #     # time.sleep(3)
-#     departments.Select_Department.clear_button()
+#     departments.Select_Institution_Branch.clear_button()
 #     # time.sleep(3)
 
 
@@ -385,4 +382,4 @@ def test_departments(page):
 #     time.sleep(1)
 
 
-#     # Рабочие 
+    # Рабочие 

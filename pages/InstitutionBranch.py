@@ -1,112 +1,113 @@
 from components.FieldToFillAndSelect import FieldToFillAndSelect
 from components.FieldToSelect import FieldToSelect
 from components.TypeSimpleInput import TypeSimpleInput
-
+from components.BtnBackAndSave import BtnBackAndSave
 
 # Текстовое поле Код ФРМО 
 class CodeFRMO(TypeSimpleInput):
-    def __init__(self, departments):
-        super().__init__(title = "Код ФРМО", departments = departments)
+    def __init__(self, InstitutionBranch):
+        super().__init__(title = "Код ФРМО", dom = InstitutionBranch)
 
 # Текстовое поле Наименование подразделения
-class FullNameDepartments(TypeSimpleInput):
-    def __init__(self, departments):
-        super().__init__(title = "Наименование подразделения", departments = departments)
+class FullName(TypeSimpleInput):
+    def __init__(self, InstitutionBranch):
+        super().__init__(title = "Наименование подразделения", dom = InstitutionBranch)
 
 # Текстовое поле Краткое наименование
-class ShortNameDepartments(TypeSimpleInput):
-    def __init__(self, departments):
-        super().__init__(title = "Краткое наименование", departments = departments)
-
-# # Текстовое поле Краткое наименование
-# class TypeDepartment(FieldToFillAndSelect):
-#     def __init__(self, departments):
-#         super().__init__(title = "Тип отделения", departments = departments)
+class ShortName(TypeSimpleInput):
+    def __init__(self, InstitutionBranch):
+        super().__init__(title = "Краткое наименование", dom = InstitutionBranch)
 
 # Текстовое поле Руководитель подразделения 
-class DirectorOfDepartment(FieldToFillAndSelect):
-    def __init__(self, departments):
-        super().__init__(title = "Руководитель подразделения", departments = departments)
+class DirectorOfStructure(FieldToFillAndSelect):
+    def __init__(self, InstitutionBranch):
+        super().__init__(title = "Руководитель подразделения", dom = InstitutionBranch)
 
 # Текстовое поле И.О. Руководителя
 class NameAndPatronymic(FieldToFillAndSelect):
-    def __init__(self, departments):
-        super().__init__(title = "И.О. Руководителя", departments = departments)
+    def __init__(self, InstitutionBranch):
+        super().__init__(title = "И.О. Руководителя", dom = InstitutionBranch)
 
 # Поля адреса 
 
 # Текстовое поле почтового индекса
 class AddrPostalCode(TypeSimpleInput):
-    def __init__(self, departments):
-        super().__init__(title = "Индекс", departments = departments)
+    def __init__(self, InstitutionBranch):
+        super().__init__(title = "Индекс", dom = InstitutionBranch)
 
 # Поле для заполнения и выбора Регион
 class AddrRegion(FieldToFillAndSelect):
-    def __init__(self, departments):
-        super().__init__(title = "Регион", departments = departments)
+    def __init__(self, InstitutionBranch):
+        super().__init__(title = "Регион", dom = InstitutionBranch)
 
 # Поле для заполнения и выбора Район
 class AddrDistrict(FieldToFillAndSelect):
-    def __init__(self, departments):
-        super().__init__(title = "Район", departments = departments)
+    def __init__(self, InstitutionBranch):
+        super().__init__(title = "Район", dom = InstitutionBranch)
 
 # Поле для заполнения и выбора Город
 class AddrCity(FieldToFillAndSelect):
-    def __init__(self, departments):
-        super().__init__(title = "Город", departments = departments)
+    def __init__(self, InstitutionBranch):
+        super().__init__(title = "Город", dom = InstitutionBranch)
 
 # Поле для заполнения и выбора Населенный пункт
 class AddrSettlement(FieldToFillAndSelect):
-    def __init__(self, departments):
-        super().__init__(title = "Населенный пункт", departments = departments)
+    def __init__(self, InstitutionBranch):
+        super().__init__(title = "Населенный пункт", dom = InstitutionBranch)
 
 # Поле для заполнения и выбора Второй населенный пункт
 class AddrSettlementSecond(FieldToFillAndSelect):
-    def __init__(self, departments):
-        super().__init__(title = "Второй населенный пункт", departments = departments)
+    def __init__(self, InstitutionBranch):
+        super().__init__(title = "Второй населенный пункт", dom = InstitutionBranch)
 
 # Поле для заполнения и выбора Улица
 class AddrStreet(FieldToFillAndSelect):
-    def __init__(self, departments):
-        super().__init__(title = "Улица", departments = departments)
+    def __init__(self, InstitutionBranch):
+        super().__init__(title = "Улица", dom = InstitutionBranch)
 
 # Поле для заполнения и выбора Дом
 class AddrHouse(FieldToFillAndSelect):
-    def __init__(self, departments):
-        super().__init__(title = "Дом", departments = departments)
+    def __init__(self, InstitutionBranch):
+        super().__init__(title = "Дом", dom = InstitutionBranch)
 
 # Текстовое поле Строение
 class AddrStructure(TypeSimpleInput):
-    def __init__(self, departments):
-        super().__init__(title = "Строение", departments = departments)
+    def __init__(self, InstitutionBranch):
+        super().__init__(title = "Строение", dom = InstitutionBranch)
 
 # Текстовое поле Корпус
 class AddrFrame(TypeSimpleInput):
-    def __init__(self, departments):
-        super().__init__(title = "Корпус", departments = departments)
+    def __init__(self, InstitutionBranch):
+        super().__init__(title = "Корпус", dom = InstitutionBranch)
 
 # Поля адреса 
 
 # Текстовое поле Телефон
 class PhoneStr(TypeSimpleInput):
-    def __init__(self, departments):
-        super().__init__(title = "Телефон", departments = departments)
+    def __init__(self, InstitutionBranch):
+        super().__init__(title = "Телефон", dom = InstitutionBranch)
 
 # Текстовое поле Описание к теелфону
 class DescribePhone(TypeSimpleInput):
-    def __init__(self, departments):
-        super().__init__(title = "Описание к телефону", departments = departments)
+    def __init__(self, InstitutionBranch):
+        super().__init__(title = "Описание к телефону", dom = InstitutionBranch)
 
 # Селектор Округа МО 
 class DistrictsMo(FieldToSelect):
-    def __init__(self, departments):
-        super().__init__(title = "Округа МО", departments = departments)
+    def __init__(self, InstitutionBranch):
+        super().__init__(title = "Округа МО", dom = InstitutionBranch)
 
 # Селектор Подчиненность
 class SubordinationMo(FieldToSelect):
-    def __init__(self, departments):
-        super().__init__(title = "Подчиненность", departments = departments)
+    def __init__(self, InstitutionBranch):
+        super().__init__(title = "Подчиненность", dom = InstitutionBranch)
 
+# Кнопка Назад в шапке 
+class BtnBackAndSaveForm(BtnBackAndSave):
+    def __init__(self, InstitutionBranch):
+        super().__init__(dom = InstitutionBranch)
+
+        
 
 # Способ композиции 
 class InstitutionBranch:
@@ -134,13 +135,13 @@ class InstitutionBranch:
 
         self.Code_FRMO = CodeFRMO(self.divs)
 
-        self.Full_Name_Departments = FullNameDepartments(self.divs)
+        self.Full_Name = FullName(self.divs)
 
-        self.Short_Name_Departments = ShortNameDepartments(self.divs)
+        self.Short_Name = ShortName(self.divs)
 
         # self.Type_Department = TypeDepartment(self.divs)
 
-        self.Director_Of_Department = DirectorOfDepartment(self.divs)
+        self.Director_Of_Structure = DirectorOfStructure(self.divs)
 
         self.Name_And_Patronymic = NameAndPatronymic(self.divs)
 
@@ -171,3 +172,5 @@ class InstitutionBranch:
         self.Districts_Mo = DistrictsMo(self.divs)
 
         self.Subordination_Mo = SubordinationMo(self.divs)
+
+        self.Btn_Back_And_Save_Form = BtnBackAndSaveForm(self.divs)

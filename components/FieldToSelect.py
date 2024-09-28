@@ -8,9 +8,9 @@ class FieldToSelect:
     3) select - Передается строка, по которой будет выполняться сравнение в выпадающем списке
     '''
 
-    def __init__(self, title, departments):
+    def __init__(self, title, dom):
         self.title = title
-        self.div, self.label, self.input_field = self.select_element(departments)
+        self.div, self.label, self.input_field = self.select_element(dom)
 
     def target(self):
         self.input_field.click()
@@ -43,8 +43,8 @@ class FieldToSelect:
     def select_button(self, div):
         return div.query_selector('button')
 
-    def select_element(self, departments):
-        for div in departments:
+    def select_element(self, dom):
+        for div in dom:
             label = div.query_selector('label')
             if label:
                 # Получим текст внутри тега label

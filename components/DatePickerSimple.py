@@ -9,10 +9,10 @@ class DatePickerSimple:
     3) select - Передается строка, по которой будет выполняться сравнение в выпадающем списке
     '''
 
-    def __init__(self, title, departments, page):
+    def __init__(self, title, dom, page):
         self.page = page
         self.title = title
-        self.div, self.label, self.input_field, self.icon = self.select_element(departments)
+        self.div, self.label, self.input_field, self.icon = self.select_element(dom)
 
     def target(self):
         self.input_field.click()
@@ -79,8 +79,8 @@ class DatePickerSimple:
         target_date_from_datepicker.click()
 
 
-    def select_element(self, departments):
-        for div in departments:
+    def select_element(self, dom):
+        for div in dom:
             label = div.query_selector('label')
             if label:
                 # Получим текст внутри тега label

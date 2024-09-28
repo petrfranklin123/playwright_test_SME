@@ -7,9 +7,9 @@ from playwright.sync_api import Playwright, sync_playwright, expect
 
 # from pages.Departments import Departments
 
-# from scripts.test_script import test_institution_branch
+from scripts.test_script import test_institution_branch
 
-from scripts.test_script import test_departments
+# from scripts.test_script import test_departments
 
 
 def run(playwright: Playwright) -> None:
@@ -26,10 +26,11 @@ def run(playwright: Playwright) -> None:
 
     
 
+    test_institution_branch(page)
 
-    test_departments(page)
+    # test_departments(page)
 
-    # test_institution_branch(page)
+  
 
 
     # # # Задержка специально для раздела адреса, нужно что-то решить

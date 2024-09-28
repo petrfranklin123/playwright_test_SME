@@ -8,9 +8,9 @@ class TypeSimpleInput:
     3) clear - Очистка пустой строкой 
     '''
 
-    def __init__(self, title, departments):
+    def __init__(self, title, dom):
         self.title = title
-        self.input_field = self.select_element(departments)
+        self.input_field = self.select_element(dom)
 
     def target(self):
         self.input_field.click()
@@ -25,9 +25,9 @@ class TypeSimpleInput:
         # time.sleep(2)
 
 
-    def select_element(self, departments):
+    def select_element(self, dom):
         # for div in departments.divs:
-        for div in departments:
+        for div in dom:
             label = div.query_selector('label')
             if label:
                 # Получим текст внутри тега span
