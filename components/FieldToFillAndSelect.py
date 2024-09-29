@@ -13,7 +13,10 @@ class FieldToFillAndSelect:
     def __init__(self, title, dom):
         # self.departments = departments # список div на странице 
         self.title = title
-        self.div, self.label, self.input_field = self.select_element(dom)
+        result = self.select_element(dom)
+        if result is None:
+            raise ValueError(f"Не удалось найти элементы для заголовка: {self.title}")
+
 
     def target(self):
         self.input_field.click()
@@ -23,8 +26,11 @@ class FieldToFillAndSelect:
         self.input_field.click() # Выбор текстового поля
         self.input_field.fill(text) # Заполнение тектового поля 
         arr_li = self.select_lis(self.div) # Выбор элементов списка
-        arr_li[1].click() # Выбор первого элемента
-        self.label.click() # Сброс таргета с поля 
+        if len(arr_li) > 1:
+            arr_li[1].click()  # Выбор первого элемента
+        else:
+            raise ValueError("Список пуст или содержит недостаточно элементов")
+        self.label.click()  # Сброс таргета с поля
 
     def clear_button(self):
         button = self.select_button(self.div)
@@ -47,7 +53,11 @@ class FieldToFillAndSelect:
         return arr_li
 
     def select_button(self, div):
-        return div.query_selector('button')
+        button = div.query_selector('button')
+        if button:
+            return button
+        else:
+            raise ValueError("Не удалось найти кнопку очистки")
 
     def select_element(self, dom):
         for div in dom:
@@ -59,7 +69,13 @@ class FieldToFillAndSelect:
                 if self.title in label_text:
                     # Найдём input внутри второго div
                     input_field = div.query_selector('input')
-
-                    if input_field:
-                        return div, label, input_field
+                    
+                    if div and label and input_field:
+                        print("=================", div, "+++++++++++++", label_text, "+++++++++++++", input_field, "=================")
+                        self.div = div 
+                        self.label = label
+                        self.input_field = input_field
+                        return True
+        return None
+                    
 

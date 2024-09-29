@@ -8,12 +8,12 @@ class BtnBackAndSave:
 
     def __init__(self, dom):
         self.btn_back = self.select_element(
-                locator = "div >> span", 
-                text = "НАЗАД", 
+                locator = "div >> a >> span", 
+                text = "Назад", 
                 dom = dom
             )
         self.btn_save = self.select_element(
-                locator = "div >> span", 
+                locator = "div >> button >> span.button_blue__title", 
                 text = "Сохранить", 
                 dom = dom
             )
@@ -26,6 +26,7 @@ class BtnBackAndSave:
 
     def select_element(self, locator, text, dom):
         for div in dom:
+            # print(div)
             btn = div.query_selector(locator)
             if btn:
                 # Получаем текстовое содержимое тега span
